@@ -1,0 +1,31 @@
+version: '2.3'
+services:
+  nginx:
+    image: nginx:1.17
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8088:80
+    depends_on:
+      - backend
+      - frontend
+  backend:
+    image: backend:latest
+    build:
+      context: backend
+      dockerfile: Dockerfile
+      network: host
+    volumes:
+      - ./logs:/backend/logs
+      - ./sqlite:/backend/db
+  frontend:
+    image: frontend:latest
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+      network: host
+    stdin_open: true
+    environment:
+      - NODE_ENV=development
+
+

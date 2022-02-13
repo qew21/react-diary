@@ -1,0 +1,17 @@
+logs
+__pycache__
+.pytest_cache
+.idea
+venv
+docker-compose.yml
+implements
+**/*.pyc
+tests
+.git
+*.egg-info
+.gitignore
+Dockerfile
+*.example
+README.md
+tests
+*.ln
